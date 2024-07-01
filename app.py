@@ -665,7 +665,7 @@ elif selected == "Recommendations":
             st.markdown("* Please go back to the Account section.")
             st.markdown("* Then go to the Login Page and Login Yourself.")
     with col2:
-        st.image(r"Docbuddy-Recommendations.png")
+        st.image(r"DocBuddy-Recommendations.png")
 
 # ========= Report Generation TAB =========
 elif selected == "Generate Report":
@@ -737,4 +737,4 @@ elif selected == "Chat With Me":
             st.markdown("* Please go back to the Account section.")
             st.markdown("* Then go to the Login Page and Login Yourself.")
     with col2:
-        st.image(r"DocBuddy-Chat-With-Me.png")
+        st.image(r"DOcBuddy-Chat-With-Me.png")
