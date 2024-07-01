@@ -23,7 +23,7 @@ warnings.filterwarnings("ignore")
 load_dotenv()
 
 # init firebase app here.
-cred = credentials.Certificate(st.secrets('FIREBASE_JSON_PATH'))
+cred = credentials.Certificate(st.secrets["FIREBASE_JSON_PATH"])
 try:
     firebase_admin.get_app()
 except ValueError as e:
@@ -426,7 +426,7 @@ def account():
                     try:
                         # Firebase Auth REST API endpoint for sign-in with email and password
                         url = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword"
-                        api_key = st.secrets('FIREBASE_API_KEY')  # Replace with your Firebase Web API Key
+                        api_key = st.secrets["FIREBASE_API_KEY"]  # Replace with your Firebase Web API Key
 
                         payload = json.dumps({
                             "email": email,
