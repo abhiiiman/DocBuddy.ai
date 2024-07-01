@@ -41,7 +41,7 @@ hide_st_style = """
 # setting up the page config here.
 st.set_page_config(
     page_title="DocBuddy.ai",
-    page_icon=r"static\\favicon.png",
+    page_icon=r"favicon.png",
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
@@ -55,12 +55,12 @@ st.set_page_config(
 st.markdown(hide_st_style, unsafe_allow_html=True)
 
 # loading the dataset here
-symptom_data = pd.read_csv("Data\\symptoms_df.csv")
-precautions_data = pd.read_csv("Data\\precautions_df.csv")
-workout_data = pd.read_csv("Data\\workout_df.csv")
-desc_data = pd.read_csv("Data\\description.csv")
-diets_data = pd.read_csv("Data\\diets.csv")
-medication_data = pd.read_csv("Data\\medications.csv")
+symptom_data = pd.read_csv("symptoms_df.csv")
+precautions_data = pd.read_csv("precautions_df.csv")
+workout_data = pd.read_csv("workout_df.csv")
+desc_data = pd.read_csv("description.csv")
+diets_data = pd.read_csv("diets.csv")
+medication_data = pd.read_csv("medications.csv")
 
 # Replace 'nan' string and np.nan with None for consistency
 precautions_data.replace('nan', None, inplace=True)
@@ -339,7 +339,7 @@ def generate_report(name, age, disease, description, precautions, workouts, diet
 # Function to predict the disease
 def get_predicted_values(patient_symptoms):
     st.session_state.predicted = True
-    model = pickle.load(open('Model\\model.pkl', 'rb'))
+    model = pickle.load(open('model.pkl', 'rb'))
     input_vector = np.zeros(len(symptoms_dict))
     for symptom in patient_symptoms:
         # making the index value 1 for that respective disease.
@@ -388,7 +388,7 @@ def get_diet(predicted_value):
 
 
 def account():
-    st.image(r"static\\Login-DocBuddy.png")
+    st.image(r"Login-DocBuddy.png")
     st.title("Welcome to DocBuddy 🩺")
 
     # Create session state variables
@@ -525,7 +525,7 @@ if selected == "Home":
         st.markdown("DocBuddy is here to help you live your healthiest life!")
 
     with col2:
-        st.image(r"static\\DocBuddy-Home.png")
+        st.image(r"DocBuddy-Home.png")
 
 # ========= WORKFLOW TAB =========
 elif selected == "WorkFlow":
@@ -559,7 +559,7 @@ elif selected == "WorkFlow":
         ''')
 
     with col2:
-        st.image(r"static\\DocBuddy-WorkFlow-Tab.png")
+        st.image(r"DocBuddy-WorkFlow-Tab.png")
 
 # ========= Accounts TAB =========
 elif selected == "Account":
@@ -665,7 +665,7 @@ elif selected == "Recommendations":
             st.markdown("* Please go back to the Account section.")
             st.markdown("* Then go to the Login Page and Login Yourself.")
     with col2:
-        st.image(r"static\\Docbuddy-Recommendations.png")
+        st.image(r"Docbuddy-Recommendations.png")
 
 # ========= Report Generation TAB =========
 elif selected == "Generate Report":
@@ -719,7 +719,7 @@ elif selected == "Generate Report":
             st.markdown("* Please go back to the Account section.")
             st.markdown("* Then go to the Login Page and Login Yourself.")
     with col2:
-        st.image(r"static\\DocBuddy-Generate-Report.png")
+        st.image(r"DocBuddy-Generate-Report.png")
 
 # ========= Chat with me TAB =========
 elif selected == "Chat With Me":
@@ -737,4 +737,4 @@ elif selected == "Chat With Me":
             st.markdown("* Please go back to the Account section.")
             st.markdown("* Then go to the Login Page and Login Yourself.")
     with col2:
-        st.image(r"static\\DocBuddy-Chat-With-Me.png")
+        st.image(r"DocBuddy-Chat-With-Me.png")
