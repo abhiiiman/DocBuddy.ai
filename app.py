@@ -284,7 +284,7 @@ def generate_report(name, age, disease, description, precautions, workouts, diet
 
     # getting the current date and time here
     now = datetime.now()
-    current_time = now.strftime("%Y-%m-%d %H:%M:%S")
+    current_time = now.strftime("%Y-%m-%d")
 
     # Title
     title = Paragraph("DocBuddy Health Report", styleH)
