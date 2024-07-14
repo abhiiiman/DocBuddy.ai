@@ -8,3 +8,6 @@ firebase-admin==6.5.0
 requests
 python-dotenv==1.0.1
 reportlab==4.2.2
+groq
+langdetect
+translate
