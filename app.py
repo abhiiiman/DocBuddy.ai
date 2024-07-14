@@ -871,7 +871,8 @@ elif selected == "Chat With Me":
                 # :rainbow[Chat With DocBuddy.ai 🗨️]
             """)
             # icon("🧑🏻‍⚕️")
-            st.subheader("Medical HealthCare ChatBot `Premium`", divider="rainbow", anchor=False)
+            # st.subheader("Medical HealthCare ChatBot `Premium`", divider="rainbow", anchor=False)
+            st.subheader("`Premium`", divider="rainbow", anchor=False)
             medical_chatbot()
         else:
             st.title("Please Login First ⚠️")
