@@ -872,7 +872,7 @@ elif selected == "Chat With Me":
             """)
             # icon("🧑🏻‍⚕️")
             # st.subheader("Medical HealthCare ChatBot `Premium`", divider="rainbow", anchor=False)
-            st.subheader("`Premium`", divider="rainbow", anchor=False)
+            st.subheader("`Premium` Access ⚡", divider="rainbow", anchor=False)
             medical_chatbot()
         else:
             st.title("Please Login First ⚠️")
