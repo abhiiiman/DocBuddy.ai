@@ -26,8 +26,23 @@ warnings.filterwarnings("ignore")
 
 load_dotenv()
 
+# Load Firebase credentials from Streamlit secrets
+firebase_creds = {
+    "type": st.secrets["firebase"]["type"],
+    "project_id": st.secrets["firebase"]["project_id"],
+    "private_key_id": st.secrets["firebase"]["private_key_id"],
+    "private_key": st.secrets["firebase"]["private_key"].replace("\\n", "\n"),
+    "client_email": st.secrets["firebase"]["client_email"],
+    "client_id": st.secrets["firebase"]["client_id"],
+    "auth_uri": st.secrets["firebase"]["auth_uri"],
+    "token_uri": st.secrets["firebase"]["token_uri"],
+    "auth_provider_x509_cert_url": st.secrets["firebase"]["auth_provider_x509_cert_url"],
+    "client_x509_cert_url": st.secrets["firebase"]["client_x509_cert_url"],
+    "universe_domain": st.secrets["firebase"]["universe_domain"]
+}
+
 # init firebase app here.
-cred = credentials.Certificate(os.getenv('FIREBASE_JSON_PATH'))
+cred = credentials.Certificate(firebase_creds)
 try:
     firebase_admin.get_app()
 except ValueError as e:
@@ -45,7 +60,7 @@ hide_st_style = """
 # setting up the page config here.
 st.set_page_config(
     page_title="DocBuddy.ai",
-    page_icon=r"static\\favicon.png",
+    page_icon=r"favicon.png",
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
@@ -59,12 +74,12 @@ st.set_page_config(
 st.markdown(hide_st_style, unsafe_allow_html=True)
 
 # loading the dataset here
-symptom_data = pd.read_csv("Data\\symptoms_df.csv")
-precautions_data = pd.read_csv("Data\\precautions_df.csv")
-workout_data = pd.read_csv("Data\\workout_df.csv")
-desc_data = pd.read_csv("Data\\description.csv")
-diets_data = pd.read_csv("Data\\diets.csv")
-medication_data = pd.read_csv("Data\\medications.csv")
+symptom_data = pd.read_csv("symptoms_df.csv")
+precautions_data = pd.read_csv("precautions_df.csv")
+workout_data = pd.read_csv("workout_df.csv")
+desc_data = pd.read_csv("description.csv")
+diets_data = pd.read_csv("diets.csv")
+medication_data = pd.read_csv("medications.csv")
 
 # Replace 'nan' string and np.nan with None for consistency
 precautions_data.replace('nan', None, inplace=True)
@@ -273,7 +288,7 @@ def generate_report(name, age, disease, description, precautions, workouts, diet
 
     # getting the current date and time here
     now = datetime.now()
-    current_time = now.strftime("%Y-%m-%d %H:%M:%S")
+    current_time = now.strftime("%Y-%m-%d")
 
     # Title
     title = Paragraph("DocBuddy Health Report", styleH)
@@ -343,7 +358,7 @@ def generate_report(name, age, disease, description, precautions, workouts, diet
 # Function to predict the disease
 def get_predicted_values(patient_symptoms):
     st.session_state.predicted = True
-    model = pickle.load(open('Model\\model.pkl', 'rb'))
+    model = pickle.load(open('model.pkl', 'rb'))
     input_vector = np.zeros(len(symptoms_dict))
     for symptom in patient_symptoms:
         # making the index value 1 for that respective disease.
@@ -392,7 +407,7 @@ def get_diet(predicted_value):
 
 
 def account():
-    st.image(r"static\\Login-DocBuddy.png")
+    st.image(r"Login-DocBuddy.png")
     st.title("Welcome to DocBuddy 🩺")
 
     # Create session state variables
@@ -430,7 +445,7 @@ def account():
                     try:
                         # Firebase Auth REST API endpoint for sign-in with email and password
                         url = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword"
-                        api_key = os.getenv('FIREBASE_API_KEY')  # Replace with your Firebase Web API Key
+                        api_key = st.secrets["FIREBASE_API_KEY"]  # Replace with your Firebase Web API Key
 
                         payload = json.dumps({
                             "email": email,
@@ -517,7 +532,7 @@ def get_translation(src, target_lang):
 
 def medical_chatbot():
     # connecting to groq cloud here.
-    client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+    client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
     # Initialize chat history and selected model
     if "messages" not in st.session_state:
@@ -650,7 +665,7 @@ if selected == "Home":
         st.markdown("DocBuddy is here to help you live your healthiest life!")
 
     with col2:
-        st.image(r"static\\DocBuddy-Home.png")
+        st.image(r"DocBuddy-Home.png")
 
 # ========= WORKFLOW TAB =========
 elif selected == "WorkFlow":
@@ -684,7 +699,7 @@ elif selected == "WorkFlow":
         ''')
 
     with col2:
-        st.image(r"static\\DocBuddy-WorkFlow-Tab.png")
+        st.image(r"DocBuddy-WorkFlow-Tab.png")
 
 # ========= Accounts TAB =========
 elif selected == "Account":
@@ -790,7 +805,7 @@ elif selected == "Recommendations":
             st.markdown("* Please go back to the Account section.")
             st.markdown("* Then go to the Login Page and Login Yourself.")
     with col2:
-        st.image(r"static\\Docbuddy-Recommendations.png")
+        st.image(r"DocBuddy-Recommendations.png")
 
 # ========= Report Generation TAB =========
 elif selected == "Generate Report":
@@ -844,7 +859,7 @@ elif selected == "Generate Report":
             st.markdown("* Please go back to the Account section.")
             st.markdown("* Then go to the Login Page and Login Yourself.")
     with col2:
-        st.image(r"static\\DocBuddy-Generate-Report.png")
+        st.image(r"DocBuddy-Generate-Report.png")
 
 # ========= Chat with me TAB =========
 elif selected == "Chat With Me":
@@ -864,4 +879,4 @@ elif selected == "Chat With Me":
             st.markdown("* Please go back to the Account section.")
             st.markdown("* Then go to the Login Page and Login Yourself.")
     with col2:
-        st.image(r"static\\DocBuddy-Chat-With-Me.png")
+        st.image(r"DOcBuddy-Chat-With-Me.png")
