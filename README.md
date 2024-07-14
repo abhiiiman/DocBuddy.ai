@@ -70,7 +70,7 @@ streamlit run app.py
 ![image](https://github.com/user-attachments/assets/d6bf4e96-bbae-45ce-a07e-38ca4ff2169a)
 
 # Multilingual Chat Suppport 🧠
-* Start with hello in your language to get started⚡
+* Say `Hello!` in your language to get started⚡
 
 ![image](https://github.com/user-attachments/assets/b91668d9-dd59-47c7-842e-6824edfab47f)
 
