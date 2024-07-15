@@ -876,7 +876,7 @@ elif selected == "Chat With Me":
             medical_chatbot()
         else:
             st.title("Please Login First ⚠️")
-            st.subheader("Log in first, to Generate Report")
+            st.subheader("Start Chatting with DocBuddy.ai 🗨️")
             st.markdown("* Please go back to the Account section.")
             st.markdown("* Then go to the Login Page and Login Yourself.")
     with col2:
