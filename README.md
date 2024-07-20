@@ -104,3 +104,9 @@ Contribute to improve DocBuddy.ai. Please follow these steps to contribute:
 ### _Please do consider giving `DocBuddy` a_ ⭐
 
 _This project is under continuous development. We appreciate your feedback and contributions to make `DocBuddy.ai` better!_
+
+### Demo 📹⏺️
+
+https://github.com/user-attachments/assets/6059c0e0-0aca-4db0-8e40-be3face59d97
+
+
